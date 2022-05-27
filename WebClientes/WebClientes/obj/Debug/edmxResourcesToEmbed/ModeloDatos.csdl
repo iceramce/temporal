@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CRUD_EJEMPLOModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CLIENTE">
+    <Key>
+      <PropertyRef Name="CLIENTE_ID" />
+    </Key>
+    <Property Name="CLIENTE_ID" Type="Int32" Nullable="false" />
+    <Property Name="NOMBRE_CLIENTE" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DOMICILIO_CLIENTE" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="CLIENTE_CONTACTOS" Relationship="Self.FK__CLIENTE_C__CLIEN__29572725" FromRole="CLIENTE" ToRole="CLIENTE_CONTACTOS" />
+  </EntityType>
+  <EntityType Name="CLIENTE_CONTACTOS">
+    <Key>
+      <PropertyRef Name="CONTACTO_ID" />
+    </Key>
+    <Property Name="CONTACTO_ID" Type="Int32" Nullable="false" />
+    <Property Name="CLIENTE_ID" Type="Int32" Nullable="false" />
+    <Property Name="NUMERO_CONTACTO" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="CLIENTE" Relationship="Self.FK__CLIENTE_C__CLIEN__29572725" FromRole="CLIENTE_CONTACTOS" ToRole="CLIENTE" />
+  </EntityType>
+  <Association Name="FK__CLIENTE_C__CLIEN__29572725">
+    <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="1" />
+    <End Role="CLIENTE_CONTACTOS" Type="Self.CLIENTE_CONTACTOS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CLIENTE">
+        <PropertyRef Name="CLIENTE_ID" />
+      </Principal>
+      <Dependent Role="CLIENTE_CONTACTOS">
+        <PropertyRef Name="CLIENTE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CRUD_EJEMPLOEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CLIENTE" EntityType="Self.CLIENTE" />
+    <EntitySet Name="CLIENTE_CONTACTOS" EntityType="Self.CLIENTE_CONTACTOS" />
+    <AssociationSet Name="FK__CLIENTE_C__CLIEN__29572725" Association="Self.FK__CLIENTE_C__CLIEN__29572725">
+      <End Role="CLIENTE" EntitySet="CLIENTE" />
+      <End Role="CLIENTE_CONTACTOS" EntitySet="CLIENTE_CONTACTOS" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

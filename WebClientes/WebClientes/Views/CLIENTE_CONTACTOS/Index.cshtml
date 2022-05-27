@@ -1,0 +1,40 @@
+﻿@model IEnumerable<WebClientes.CLIENTE_CONTACTOS>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NUMERO_CONTACTO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CLIENTE.NOMBRE_CLIENTE)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NUMERO_CONTACTO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CLIENTE.NOMBRE_CLIENTE)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.CONTACTO_ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.CONTACTO_ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CONTACTO_ID })
+        </td>
+    </tr>
+}
+
+</table>

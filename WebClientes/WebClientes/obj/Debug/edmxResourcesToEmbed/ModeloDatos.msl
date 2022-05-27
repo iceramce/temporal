@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CRUD_EJEMPLOModelStoreContainer" CdmEntityContainer="CRUD_EJEMPLOEntities">
+    <EntitySetMapping Name="CLIENTE">
+      <EntityTypeMapping TypeName="CRUD_EJEMPLOModel.CLIENTE">
+        <MappingFragment StoreEntitySet="CLIENTE">
+          <ScalarProperty Name="CLIENTE_ID" ColumnName="CLIENTE_ID" />
+          <ScalarProperty Name="NOMBRE_CLIENTE" ColumnName="NOMBRE_CLIENTE" />
+          <ScalarProperty Name="DOMICILIO_CLIENTE" ColumnName="DOMICILIO_CLIENTE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CLIENTE_CONTACTOS">
+      <EntityTypeMapping TypeName="CRUD_EJEMPLOModel.CLIENTE_CONTACTOS">
+        <MappingFragment StoreEntitySet="CLIENTE_CONTACTOS">
+          <ScalarProperty Name="CONTACTO_ID" ColumnName="CONTACTO_ID" />
+          <ScalarProperty Name="CLIENTE_ID" ColumnName="CLIENTE_ID" />
+          <ScalarProperty Name="NUMERO_CONTACTO" ColumnName="NUMERO_CONTACTO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CRUD_EJEMPLOModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CLIENTE">
+          <Key>
+            <PropertyRef Name="CLIENTE_ID" />
+          </Key>
+          <Property Name="CLIENTE_ID" Type="int" Nullable="false" />
+          <Property Name="NOMBRE_CLIENTE" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="DOMICILIO_CLIENTE" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CLIENTE_CONTACTOS">
+          <Key>
+            <PropertyRef Name="CONTACTO_ID" />
+          </Key>
+          <Property Name="CONTACTO_ID" Type="int" Nullable="false" />
+          <Property Name="CLIENTE_ID" Type="int" Nullable="false" />
+          <Property Name="NUMERO_CONTACTO" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__CLIENTE_C__CLIEN__29572725">
+          <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="1" />
+          <End Role="CLIENTE_CONTACTOS" Type="Self.CLIENTE_CONTACTOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENTE">
+              <PropertyRef Name="CLIENTE_ID" />
+            </Principal>
+            <Dependent Role="CLIENTE_CONTACTOS">
+              <PropertyRef Name="CLIENTE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CRUD_EJEMPLOModelStoreContainer">
+          <EntitySet Name="CLIENTE" EntityType="Self.CLIENTE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CLIENTE_CONTACTOS" EntityType="Self.CLIENTE_CONTACTOS" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__CLIENTE_C__CLIEN__29572725" Association="Self.FK__CLIENTE_C__CLIEN__29572725">
+            <End Role="CLIENTE" EntitySet="CLIENTE" />
+            <End Role="CLIENTE_CONTACTOS" EntitySet="CLIENTE_CONTACTOS" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CRUD_EJEMPLOModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CLIENTE">
+          <Key>
+            <PropertyRef Name="CLIENTE_ID" />
+          </Key>
+          <Property Name="CLIENTE_ID" Type="Int32" Nullable="false" />
+          <Property Name="NOMBRE_CLIENTE" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DOMICILIO_CLIENTE" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="CLIENTE_CONTACTOS" Relationship="Self.FK__CLIENTE_C__CLIEN__29572725" FromRole="CLIENTE" ToRole="CLIENTE_CONTACTOS" />
+        </EntityType>
+        <EntityType Name="CLIENTE_CONTACTOS">
+          <Key>
+            <PropertyRef Name="CONTACTO_ID" />
+          </Key>
+          <Property Name="CONTACTO_ID" Type="Int32" Nullable="false" />
+          <Property Name="CLIENTE_ID" Type="Int32" Nullable="false" />
+          <Property Name="NUMERO_CONTACTO" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CLIENTE" Relationship="Self.FK__CLIENTE_C__CLIEN__29572725" FromRole="CLIENTE_CONTACTOS" ToRole="CLIENTE" />
+        </EntityType>
+        <Association Name="FK__CLIENTE_C__CLIEN__29572725">
+          <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="1" />
+          <End Role="CLIENTE_CONTACTOS" Type="Self.CLIENTE_CONTACTOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENTE">
+              <PropertyRef Name="CLIENTE_ID" />
+            </Principal>
+            <Dependent Role="CLIENTE_CONTACTOS">
+              <PropertyRef Name="CLIENTE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CRUD_EJEMPLOEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CLIENTE" EntityType="Self.CLIENTE" />
+          <EntitySet Name="CLIENTE_CONTACTOS" EntityType="Self.CLIENTE_CONTACTOS" />
+          <AssociationSet Name="FK__CLIENTE_C__CLIEN__29572725" Association="Self.FK__CLIENTE_C__CLIEN__29572725">
+            <End Role="CLIENTE" EntitySet="CLIENTE" />
+            <End Role="CLIENTE_CONTACTOS" EntitySet="CLIENTE_CONTACTOS" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CRUD_EJEMPLOModelStoreContainer" CdmEntityContainer="CRUD_EJEMPLOEntities">
+          <EntitySetMapping Name="CLIENTE">
+            <EntityTypeMapping TypeName="CRUD_EJEMPLOModel.CLIENTE">
+              <MappingFragment StoreEntitySet="CLIENTE">
+                <ScalarProperty Name="CLIENTE_ID" ColumnName="CLIENTE_ID" />
+                <ScalarProperty Name="NOMBRE_CLIENTE" ColumnName="NOMBRE_CLIENTE" />
+                <ScalarProperty Name="DOMICILIO_CLIENTE" ColumnName="DOMICILIO_CLIENTE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CLIENTE_CONTACTOS">
+            <EntityTypeMapping TypeName="CRUD_EJEMPLOModel.CLIENTE_CONTACTOS">
+              <MappingFragment StoreEntitySet="CLIENTE_CONTACTOS">
+                <ScalarProperty Name="CONTACTO_ID" ColumnName="CONTACTO_ID" />
+                <ScalarProperty Name="CLIENTE_ID" ColumnName="CLIENTE_ID" />
+                <ScalarProperty Name="NUMERO_CONTACTO" ColumnName="NUMERO_CONTACTO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
